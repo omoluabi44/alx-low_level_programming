@@ -1,0 +1,19 @@
+#include <stdio.h>
+int main(void)
+{
+	int alpha = 'a';
+	int ALPHA = 'A';
+
+	while (alpha <= 'z' && ALPHA < 'Z')
+	{
+		putchar(alpha);
+		alpha++;
+	}
+	while (ALPHA <= 'Z')
+	{
+		putchar(ALPHA);
+		ALPHA++;
+	}
+	putchar('\n');
+	return (0);
+}
