@@ -8,7 +8,7 @@ int main(void)
 {
 	int alpha = 'a';
 
-	while (alpha < 'z')
+	while (alpha <= 'z')
 	{
 		if (alpha != 'q' &&  alpha != 'e')
 			putchar(alpha);
