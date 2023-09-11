@@ -1,6 +1,3 @@
-
-
-
 #include<stdio.h>
 /**
  * main - this print 3 different character
@@ -16,13 +13,10 @@ int main(void)
 
 	while (a <= 9)
 	{
-		//b = a + 1;
 		while (b <= 9)
 		{
-			//c = b + 1;
 			while (c <= 9)
 			{
-				//e = c + 1;
 				while (e <= 9)
 				{
 					putchar(a + '0');
