@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _isLower - this function passed c as arguement to main.c
+ * _islower - this function passed c as arguement to main.c
  *@c: number to be checked.
  * Return: int
  */
