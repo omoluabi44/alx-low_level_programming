@@ -3,10 +3,9 @@
 
 /**
  *_abs- get the absolute number of integer
- *@c:
+ *@b: absolute computed
  *Return: 0
  */
-int _abs(int);
 
 int _abs(int b)
 {
