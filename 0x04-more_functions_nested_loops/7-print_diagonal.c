@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- *print_line - this function print line
+ *print_diagonal - this function print diagonal
  *@n: 0
  */
 void print_diagonal(int n)
@@ -10,10 +10,23 @@ void print_diagonal(int n)
 		_putchar('\n');
 	else
 	{
-		int j;
-		for ( j = 1; j <= n; j++)
-			_putchar(' ');
-		_putchar('_');
-		_putchar('\n');
+		int backslash;
+		int space;
+
+		for (backslash = 0; backslash < n; backslash++)
+		{
+			for (space = 0; space < n; space++)
+			{
+				if (space == backslash)
+				{
+					_putchar('\\');
+				}
+				else if (space < backslash)
+				{
+					_putchar(' ');
+				}
+			}
+			_putchar('\n');
+		}
 	}
 }
