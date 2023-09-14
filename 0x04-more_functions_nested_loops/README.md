@@ -1,0 +1,1 @@
+This repo contain more on function and loop
