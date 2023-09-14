@@ -1,9 +1,7 @@
 #include "main.h"
 /**
- * mul - this fuction multiply two number
- *@c: arguement
- *@b: argument
- *Return: c
+ * print_numbers - this fuction multiply two number
+ *Return: 0
  */
 void print_numbers(void)
 {
