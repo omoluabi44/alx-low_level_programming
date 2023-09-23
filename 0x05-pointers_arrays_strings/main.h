@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIH_H
+void puts_half(char *str);
 void rev_string(char *s);
 int _putchar(char c);
 void _puts(char *str);
