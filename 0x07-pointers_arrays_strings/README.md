@@ -1,0 +1,1 @@
+this repo contain more task on Pointers, array
