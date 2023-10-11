@@ -1,3 +1,4 @@
+#include <stdlib.h>
 /**
  * print_name - function to pointers that call function
  *@name: value passed
@@ -7,7 +8,7 @@
 
 void print_name(char *name, void (*f)(char *))
 {
-	if (name == "0")
+	if (name == NULL)
 		return;
 	f(name);
 }
