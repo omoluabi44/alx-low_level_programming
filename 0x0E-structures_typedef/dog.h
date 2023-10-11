@@ -8,10 +8,13 @@
  *
  *Description: this structure crate details of each dog in the hospital
  */
-typedef struct dog dog_t;
+
 /**
- *dog_t- typedef struct dog
+ * dog_t - typedef struct dog
  */
+
+typedef struct dog dog_t;
+
 struct dog
 {
 	char *name;
