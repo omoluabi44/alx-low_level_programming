@@ -4,14 +4,17 @@
  *@head: head pointr
  */
 
-void free_listint(listint_t *head)
+void free_listint2(listint_t **head)
 {
-	listint_t *temp;
-
-	while (head != NULL)
+	listint_t *tmp;
+	if (head == NULL || *head == NULL)
+		return;
+	while ((*head)->next !=NULL)
 	{
-		temp = head;
-		head = head->next;
-		free(temp);
+		tmp = (*head)->next;
+		free(*head);
+		*head = tmp;
 	}
+	free(*head);
+	*head = NULL;
 }
