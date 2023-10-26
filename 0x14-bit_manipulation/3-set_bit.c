@@ -5,7 +5,7 @@
  *@index: index param
  *Return: either 1 or 0
  */
-int set_bit(unsigned long int *n, unsigned int index);
+int set_bit(unsigned long int *n, unsigned int index)
 {
 	unsigned int j = 0;
 
