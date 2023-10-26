@@ -1,0 +1,1 @@
+this repo contain bit manipulation problems witb solutions 
