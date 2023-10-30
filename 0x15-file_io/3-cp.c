@@ -1,5 +1,4 @@
 #include "main.h"
-#include <error.h>
 /**
  * error - check if a file is opened  and handle errors
  *file_from: initial file to copy from
@@ -49,6 +48,7 @@ int main (int argc, char *argv[])
 		nchars = read(file_from, buf, 1024);
 		if (nchars == -1)
 			error_(-1, 0, argv);
+
 		nw = write(file_to, buf, nchars);
 		if (nw == -1)
 			error_(0, -1, argv);
