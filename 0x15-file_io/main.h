@@ -1,6 +1,7 @@
 #ifndef LIST
 #define LIST
 #include <unistd.h>
+#include <stdio.h>
 #include<sys/types.h>
 #include<stdlib.h>
 #include<sys/stat.h>

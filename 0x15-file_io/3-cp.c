@@ -1,4 +1,5 @@
 #include "main.h"
+#include <error.h>
 /**
  * error - check if a file is opened  and handle errors
  *file_from: initial file to copy from
@@ -6,16 +7,17 @@
  *Return: nothing
  */
 
-void error (int file_from, int file_to, char *argv[])
+void error_(int file_from, int file_to, char *argv[])
 {
 	if (file_from == -1)
 	{
-		dprintf(STDERR_FILENO, Error: "Can't read from file %S\n", argv[1])
-			exit(98);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
 	}
 	if (file_to == -1)
         {
-                dprintf(STDERR_FILENO, Error: "Can't write to file %S\n", argv[2])			error(99);
+                dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+		exit(99);
         }
 }
 
@@ -33,20 +35,35 @@ int main (int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		drprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
 		exit(97);
 	}
 
-	file_from = openn(argv[1], O_RDONLY);
-	file_to = open(argv[2],O-CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	erro(file_from, file_to,argv);
+	file_from = open(argv[1], O_RDONLY);
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
+	error_(file_from, file_to, argv);
 
 	nchars = 1024;
 	while (nchars == 1024)
 	{
-		nchar = read(file_from, buf, 1024);
+		nchars = read(file_from, buf, 1024);
 		if (nchars == -1)
-			error(-1, 0, argv);
-		nw = write(file_to, buf, nchar)
-			error(0, -1,argv);
+			error_(-1, 0, argv);
+		nw = write(file_to, buf, nchars);
+		if (nw == -1)
+			error_(0, -1, argv);
 	}
+	error_c = close(file_from);
+	if (error_c == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		exit(100);
+	}
+	error_c = close(file_to);
+	if (error_c == -1)
+        {
+                dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
+                exit(100);
+        }
+	return (0);
+}
