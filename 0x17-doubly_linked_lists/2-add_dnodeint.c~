@@ -1,0 +1,30 @@
+#include "lists.h"
+/**
+ *add_dnodeint - at the node at the beginning
+ *@head: pointer that point to the head pointers
+ *@n: data to be passed
+ *Return: new address of the new node
+ */
+dlistint_t *add_dnodeint(dlistint_t **head, const int n)
+{
+	dlistint_t *newNode, *h;
+
+	h = *head;
+
+	newNode = malloc(sizeof(dlistint_t));
+	if (newNode == NULL)
+		return (NULL);
+
+	newNode->n = n;
+	newNode->prev = NULL;
+	newNode->next = NULL;
+
+	if (h != NULL)
+	{
+		newNode->next = h;
+		h->prev = newNode;
+	}
+	h = newNode;
+	*head = h;
+	return h;
+}
