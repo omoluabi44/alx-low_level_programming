@@ -1,46 +1,46 @@
-/*
- * File: 7-insert_dnodeint.c
- * Auth: Gedeon Obae Gekonge
- */
-
 #include "lists.h"
-
 /**
- * insert_dnodeint_at_index - Inserts a new node in a dlistint_t
- *                            list at a given position.
- * @h: A pointer to the head of the dlistint_t list.
- * @idx: The position to insert the new node.
- * @n: The integer for the new node to contain.
- *
- * Return: If the function fails - NULL.
- *         Otherwise - the address of the new node.
+ *insert_dnodeint_at_index - insert a node at a given index
+ *@h:head pointer
+ *@idx: index
+ *@n: data to be include
+ *Return: new Node address
  */
+
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *tmp = *h, *new;
+	dlistint_t *tmp, *tmp2,  *newNode;
+
+	tmp = *h;
 
 	if (idx == 0)
+	{
 		return (add_dnodeint(h, n));
-
-	for (; idx != 1; idx--)
+	}
+	if (tmp != NULL)
+	{
+		while (tmp->prev != NULL)
+			tmp = tmp->prev;
+	}
+	while (idx != 1)
 	{
 		tmp = tmp->next;
 		if (tmp == NULL)
 			return (NULL);
+		idx--;
 	}
-
 	if (tmp->next == NULL)
 		return (add_dnodeint_end(h, n));
 
-	new = malloc(sizeof(dlistint_t));
-	if (new == NULL)
+	newNode = malloc(sizeof(dlistint_t));
+	if (newNode == NULL)
 		return (NULL);
 
-	new->n = n;
-	new->prev = tmp;
-	new->next = tmp->next;
-	tmp->next->prev = new;
-	tmp->next = new;
-
-	return (new);
+	newNode->n = n;
+	tmp2 = tmp->next;
+	tmp->next = newNode;
+	tmp2->prev = newNode;
+	newNode->prev = tmp;
+	newNode->next = tmp2;
+	return (newNode);
 }
