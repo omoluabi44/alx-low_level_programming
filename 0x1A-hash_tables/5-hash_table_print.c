@@ -27,7 +27,7 @@ void hash_table_print(const hash_table_t *ht)
 		{
 			if (first_pair == 0)
 				printf(", ");
-			printf(" '%s': '%s'", current->key, current->value);
+			printf("'%s': '%s'", current->key, current->value);
 
 			first_pair = 0;
 
