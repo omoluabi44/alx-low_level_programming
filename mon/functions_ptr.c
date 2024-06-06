@@ -8,8 +8,6 @@ int stack_length = 0;
 void push(stack_t **stack, unsigned int line_number)
 {
 
-	stack_t *h;
-
 	if ((N_token <= 1) || !(is_number(tokens[1])))
 	{
 		free_tokes();
@@ -17,9 +15,10 @@ void push(stack_t **stack, unsigned int line_number)
 		free(head);
 		free(line);
 		close_stream();
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		dprintf(2, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	stack_t *h;
 
 	h = *stack;
 	h = malloc(sizeof(stack_t));
@@ -67,33 +66,6 @@ void pall(stack_t **stack, unsigned int line_number)
 	free_tokes();
 
 }
-void pint(stack_t **stack, unsigned int line_number)
-{
-	stack_t *tmp;
-	(void) line_number;
-	(void) stack;
-
-	if (head == NULL)
-		return;
-
-	tmp = head;
-	if (tmp->next != NULL)
-	{
-		printf("%d\n", tmp->n);
-		free_tokes();
-	}
-	else
-	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		/**exit(EXIT_FAILURE);
-		free(all_func);
-		free(head);
-		free(line);
-		free_tokes();
-		close_stream();*/
-		free_arguments();
-	}
-}
 /**
  *function_ptr - call appropriate function
  */
@@ -104,7 +76,6 @@ void function_ptr(void)
 	instruction_t all_funcs[] = {
 		{"push", &push},
 		{"pall", &pall},
-		{"pint", &pint},
 		{NULL, NULL}
 	};
 	if (N_token == 0)
@@ -139,7 +110,7 @@ void run_instr(void)
  */
 void invalid_instr(void)
 {
-	fprintf(stderr, "L%d: unknown instruction %s\n",
+	dprintf(2, "L%d: unknow instruction %s\n",
 		line_number, tokens[0]);
 	close_stream();
 	free_tokes();

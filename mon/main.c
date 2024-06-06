@@ -1,5 +1,4 @@
 #include "monty.h"
-#define _GNU_SOURCE
 /**
  * main - the monty bytecode
  *@argc: lenth of the arguement
@@ -8,22 +7,17 @@
  */
 int main(int argc, char *argv[])
 {
-
-	int ret;
 	size_t len = 0;
 
 	valid_argument(argc);
 	ini_all_func();
 	fileOpen = file((argv[1]));
-
-	ret = getline(&line, &len, fileOpen);
-	while (ret != -1)
+	while (getline(&line, &len, fileOpen) != -1)
 	{
 		line_number += 1;
 		tokenize_opcodes();
 		function_ptr();
 		run_instr();
-		ret = getline(&line, &len, fileOpen);
 	}
 	free_arguments();
 	return (0);
@@ -41,8 +35,6 @@ FILE *file(char *filename)
 	if (!ptr)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
-		free(line);
-		free_arguments();
 		exit(EXIT_FAILURE);
 	}
 	return (ptr);
@@ -64,7 +56,7 @@ void ini_all_func(void)
  */
 void malloc_fail(void)
 {
-	fprintf(stderr, "Error: malloc failed\n");
+	dprintf(2, "Error: malloc failed\n");
 	free_arguments();
 	exit(EXIT_FAILURE);
 }
@@ -76,5 +68,5 @@ void close_stream(void)
 	if (fileOpen == NULL)
 		return;
 	fclose(fileOpen);
-	fileOpen = NULL;
+	fileOpen == NULL;
 }
